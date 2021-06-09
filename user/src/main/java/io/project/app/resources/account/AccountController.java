@@ -13,6 +13,8 @@ import java.util.Optional;
 import io.project.app.domain.Account;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -26,7 +28,7 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @PutMapping(path = "/register", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/register", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> register(
             @RequestBody(required = true) Account registerRequest
     ) {
@@ -44,5 +46,7 @@ public class AccountController {
     public ResponseEntity<?> getAllAccounts() {
         return ResponseEntity.ok(this.accountService.getAccounts());
     }
+    
+ 
 
 }
