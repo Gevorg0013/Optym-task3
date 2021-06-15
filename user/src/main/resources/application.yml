@@ -19,7 +19,7 @@ management:
 server:
     http2:
       enabled: true
-    port: 9092
+    port: 9093
     servlet:
       session:
         timeout: 600s
@@ -38,8 +38,23 @@ spring:
   main:
     allow-bean-definition-overriding: true
   application:
-    name: account 
-
+    name: user
+    
+  kafka:   
+    listener:
+      ack-mode: BATCH
+      concurrency: 3
+    consumer:
+      bootstrap-servers: kafka:9092
+      group-id: global
+      auto-offset-reset: earliest         
+      enable-auto-commit: false
+      session.timeout.ms: 30000
+      request.timeout.ms: 40000
+      max.poll.interval.ms: 30000
+      max.poll.records: 10
+      fetch-max-wait: 100
+      fetch-min-size: 1048576
        
   servlet:
     multipart:

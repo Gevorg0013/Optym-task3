@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 import io.project.app.domain.Account;
+import io.project.app.services.ProducerService;
 import org.springframework.http.MediaType;
 import static org.springframework.http.ResponseEntity.ok;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -80,5 +82,16 @@ public class AccountController {
         return ResponseEntity.ok(this.accountService.deleteById(id));
     }
  
+    
+    private final ProducerService producerService;
+
+    public AccountController(ProducerService producerService) {
+        this.producerService = producerService;
+    }
+
+    @PostMapping(value = "/publish")
+    public void sendMessageToKafkaTopic(@RequestParam String message) {
+        producerService.sendMessage(message);
+    }
 
 }

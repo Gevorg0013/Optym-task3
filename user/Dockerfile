@@ -13,7 +13,7 @@ ENTRYPOINT ["java", "-XX:+UseZGC", "-XX:MinHeapSize=512M", "-XX:InitialHeapSize=
             "-XX:MinMetaspaceFreeRatio=50", "-XX:MaxMetaspaceFreeRatio=100",  \
             "-XX:+UnlockExperimentalVMOptions", "-XshowSettings:vm", "-jar","/opt/user.jar"]
 
-EXPOSE 9092
+EXPOSE 9093
 
 
 
